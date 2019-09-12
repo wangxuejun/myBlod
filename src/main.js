@@ -6,14 +6,15 @@ import router from './router'
 import 'iview/dist/styles/iview.css'
 // import hljs from 'highlight.js'
 // import 'highlight.js/styles/googlecode.css'
-import { Switch, Message, Notice, Modal, Icon, Avatar, Dropdown, DropdownMenu, DropdownItem } from 'iview';
+import { Switch, Message, Notice, Modal, Icon, Avatar, Dropdown, DropdownMenu, DropdownItem, BackTop } from 'iview';
 let components1 = {
   'i-switch': Switch,
   'Icon': Icon,
   'Avatar': Avatar,
   'Dropdown': Dropdown,
   'DropdownMenu': DropdownMenu,
-  'DropdownItem': DropdownItem
+  'DropdownItem': DropdownItem,
+  'BackTop': BackTop
 }
 let components2 = {
   '$Message': Message,
