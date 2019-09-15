@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <transition :name="transitionName">
+      <router-view></router-view>
+    </transition>
     <BackTop :bottom="20"></BackTop>
-    <kmBack :bottom="60"></kmBack>
   </div>
 </template>
 <script>
@@ -10,10 +11,26 @@
 export default {
   name: 'App',
   components: {
-    kmBack: () => import('@/components/base/kmBack')
   },
   data () {
     return {
+      transitionName: 'fade'
+    }
+  },
+   watch: {
+    '$route' (to, from) {
+      let wid = document.documentElement.offsetWidth || document.body.offsetWidth
+      if (wid > 700) {
+        this.transitionName = 'fade'
+        return
+      }
+      let fromI = from.meta.index
+      let toI = to.meta.index
+      if (fromI < toI) {
+        this.transitionName = 'slide-left'
+      } else {
+        this.transitionName = 'slide-right'
+      }
     }
   },
   mounted () {
@@ -24,6 +41,7 @@ export default {
 </script>
 
 <style lang="less">
+@import './assets/css/common.less';
 *{
   padding: 0;
   margin: 0;

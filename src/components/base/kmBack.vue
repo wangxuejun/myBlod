@@ -21,18 +21,26 @@ export default {
     }
   },
   mounted () {
-    document.addEventListener('touchstart', () => {
+    document.addEventListener('scroll', () => {
       clearTimeout(this.timer)
       this.active = true
-    })
-    document.addEventListener('touchend', () => {
       this.timer = setTimeout(() => {
         this.active = false
       }, 1500)
     })
+    // document.addEventListener('touchstart', () => {
+    //   clearTimeout(this.timer)
+    //   this.active = true
+    // })
+    // document.addEventListener('touchend', () => {
+    //   this.timer = setTimeout(() => {
+    //     this.active = false
+    //   }, 1500)
+    // })
   },
   methods: {
     back () {
+      // this.$router.replace('/home')
       this.$router.back()
     }
   }

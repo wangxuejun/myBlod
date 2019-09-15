@@ -9,20 +9,24 @@
       </div>
       <div class="content">
         <transition :name="transitionName">
-          <router-view class="position-div"></router-view>
+          <keep-alive exclude='detailPage'>
+            <router-view></router-view>
+          </keep-alive>
         </transition>
       </div>
     </div>
     <!--遮罩-->
     <transition name="fade">
-      <div class="overlay" v-if="active"></div>
+      <div class="overlay" v-if="active" @click="toggle"></div>
     </transition>
   </div>
 </template>
 
 <script>
+import mixin from '@/mixins/mixins'
 export default {
   name: 'App',
+  mixins: [mixin],
   components: {
     kmHead: () => import('@/components/base/kmHead'),
     kmNav: () => import('@/components/base/kmNav')
@@ -31,7 +35,8 @@ export default {
     return {
       active: false,
       statue: false,
-      transitionName: 'fade'
+      transitionName: 'fade',
+      exclude: ['detailPage']
     }
   },
   watch: {
@@ -111,13 +116,13 @@ export default {
       .content{
         width: calc(100%);
         margin-left: 0;
-        .position-div{
-          position: absolute;
-          left: 0;
-          right: 0;
-          top: 50px;
-          bottom: 0;
-        }
+        // .position-div{
+        //   position: absolute;
+        //   left: 0;
+        //   right: 0;
+        //   top: 50px;
+        //   bottom: 0;
+        // }
       }
     }
   }
@@ -130,13 +135,13 @@ export default {
       .content{
         width: calc(100% - 200px);
         margin-left: 200px;
-        .position-div{
-          position: absolute;
-          left: 200px;
-          right: 0;
-          top: 50px;
-          bottom: 0;
-        }
+        // .position-div{
+        //   position: absolute;
+        //   left: 200px;
+        //   right: 0;
+        //   top: 50px;
+        //   bottom: 0;
+        // }
       }
     }
   }

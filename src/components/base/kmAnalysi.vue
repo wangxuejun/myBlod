@@ -1,20 +1,21 @@
 <template>
   <div class="component">
-    <!--<mavon-editor ref="editor" v-model="doc"-->
-            <!--:ishljs = "true"-->
-            <!--@save="saveDoc"-->
-            <!--@change="updateDoc">-->
-    <!--</mavon-editor>-->
-    <mavon-editor
-      class="md"
-      :ishljs = "true"
-      :value="doc"
-      :subfield = "false"
-      defaultOpen = "preview"
-      :toolbarsFlag = "false"
-      :editable="false"
-      :scrollStyle="true">
-    </mavon-editor>
+    <div>
+      <br v-if="loading">
+      <van-skeleton :row="50" :row-width="config" :loading="loading">
+        <mavon-editor
+          class="md"
+          :boxShadow = "false"
+          :ishljs = "true"
+          :value="doc"
+          :subfield = "false"
+          defaultOpen = "preview"
+          :toolbarsFlag = "false"
+          :editable="false"
+          :scrollStyle="true">
+        </mavon-editor>
+      </van-skeleton>
+    </div>
   </div>
 </template>
 <script>
@@ -25,11 +26,25 @@ export default {
   components: {mavonEditor},
   data () {
     return {
+      loading: true,
       isopen: false,
-      doc: content
+      doc: content,
+      config:[]
+    }
+  },
+  created () {
+    let arr = ['40%', '80%', '90%', '50%', '60%']
+    let n = 0;
+    for(let i = 0; i < 50; i++) {
+      if(n === 4) n = 0
+      this.config.push(arr[n])
+      n +=1
     }
   },
   mounted () {
+    setTimeout(() => {
+      this.loading = false
+    }, 1000)
   },
   methods: {
     updateDoc(markdown, html) {

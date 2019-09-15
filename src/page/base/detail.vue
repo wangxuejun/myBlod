@@ -9,6 +9,9 @@ export default {
   name: 'detailPage',
   components: {
     kmAnalysi: () => import('@/components/base/kmAnalysi')
+  },
+  mounted () {
+    console.log('detail')
   }
 }
 </script>

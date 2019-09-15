@@ -7,8 +7,10 @@
 </template>
 
 <script>
+import mixin from '@/mixins/mixins'
 export default {
   name: 'HeadCom',
+  mixins: [mixin],
   data () {
     return {
     }

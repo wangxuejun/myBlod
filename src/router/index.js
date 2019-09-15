@@ -16,8 +16,7 @@ export default new Router({
           path: 'home',
           component: resolve => require(['@/page/base/home'], resolve),
           meta: {
-            index: 1,
-            top: ''
+            index: 1
           }
         },
         {
@@ -26,6 +25,14 @@ export default new Router({
           component: resolve => require(['@/page/base/detail'], resolve),
           meta: {
             index: 2
+          }
+        },
+        {
+          path: '/login',
+          name: 'loginPage',
+          component: resolve => require(['@/page/login'], resolve),
+          meta: {
+            index: 100
           }
         }
       ]
