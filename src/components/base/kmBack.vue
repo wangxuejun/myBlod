@@ -18,16 +18,16 @@ export default {
     return {
       timer: null,
       active: false
-    }
+    };
   },
   mounted () {
     document.addEventListener('scroll', () => {
-      clearTimeout(this.timer)
-      this.active = true
+      clearTimeout(this.timer);
+      this.active = true;
       this.timer = setTimeout(() => {
-        this.active = false
-      }, 1500)
-    })
+        this.active = false;
+      }, 1500);
+    });
     // document.addEventListener('touchstart', () => {
     //   clearTimeout(this.timer)
     //   this.active = true
@@ -41,10 +41,10 @@ export default {
   methods: {
     back () {
       // this.$router.replace('/home')
-      this.$router.back()
+      this.$router.back();
     }
   }
-}
+};
 </script>
 
 <style scoped lang="less">

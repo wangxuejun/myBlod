@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from 'vue';
+import Router from 'vue-router';
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -34,15 +34,23 @@ export default new Router({
           meta: {
             index: 100
           }
+        },
+        {
+          path: '/register',
+          name: 'registerPage',
+          component: resolve => require(['@/page/register'], resolve),
+          meta: {
+            index: 101
+          }
         }
       ]
     }
   ],
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {
-      return savedPosition
+      return savedPosition;
     } else {
-      return { x: 0, y: 0 }
+      return { x: 0, y: 0 };
     }
   }
-})
+});

@@ -1,7 +1,7 @@
 <template>
   <div class="inPage" ref="inPage">
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
-      <kmArcile v-for="item, index in list" :info="item" :key="index" @click.native="jump"></kmArcile>
+      <kmArcile v-for="(item, index) in list" :info="item" :key="index" @click.native="jump"></kmArcile>
       <div class="bottom">
         <van-loading />
       </div>
@@ -9,12 +9,12 @@
   </div>
 </template>
 <script>
-import mixin from '@/mixins/mixins'
+import mixin from '@/mixins/mixins';
 export default {
   name: 'homePage',
   mixins: [mixin],
   components: {
-    kmArcile: () => import('@/components/base/kmArcile'),
+    kmArcile: () => import('@/components/base/kmArcile')
   },
   data () {
     return {
@@ -57,43 +57,42 @@ export default {
           love: 1
         }
       ]
-    }
+    };
   },
   mounted () {
     let that = this;
-    let dom = that.$refs.inPage
-    window.onscroll = function() {
-      let dom = that.$refs.inPage
-      if (!dom) return
-      var scrollTop =  document.documentElement.scrollTop || document.body.scrollTop
-      var windowHeight = document.documentElement.clientHeight || document.body.clientHeight
-      var scrollHeight = dom.scrollHeight + 50
-      if(scrollTop + windowHeight === scrollHeight) {
+    window.onscroll = function () {
+      let dom = that.$refs.inPage;
+      if (!dom) return;
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      let windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+      let scrollHeight = dom.scrollHeight + 50;
+      if (scrollTop + windowHeight === scrollHeight) {
         that.onLoading();
-      }   
-    }
+      }
+    };
   },
   methods: {
     jump () {
-      this.createPage({name: 'detailPage'})
+      this.createPage({name: 'detailPage'});
     },
     // 下拉刷新
     onRefresh () {
       setTimeout(() => {
-        this.isLoading = false
-      },2000)
+        this.isLoading = false;
+      }, 2000);
     },
     // 加载更多
     onLoading () {
       setTimeout(() => {
-       this.list.push({
+        this.list.push({
           img: true,
           love: 3
-        })
-      },2000)
+        });
+      }, 2000);
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

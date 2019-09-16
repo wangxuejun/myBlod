@@ -7,20 +7,20 @@
 </template>
 
 <script>
-import mixin from '@/mixins/mixins'
+import mixin from '@/mixins/mixins';
 export default {
   name: 'HeadCom',
   mixins: [mixin],
   data () {
     return {
-    }
+    };
   },
   methods: {
     toggle () {
-      this.$emit('toggle')
+      this.$emit('toggle');
     }
   }
-}
+};
 </script>
 
 <style scoped lang="less">

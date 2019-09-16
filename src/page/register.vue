@@ -3,17 +3,14 @@
     <div class="header">
       <van-field v-model="name" placeholder="请输入用户名" clearable left-icon="manager" size="large"/>
       <van-field v-model="password1" placeholder="请输入密码" clearable left-icon="lock" size="large" type="password"/>
-      <div class="pg-register">
-        <span @click="register">注册</span>
-      </div>
-      <van-button type="info" long size="large" @click="login">登录</van-button>
+      <van-field disabled style="opacity: 0"/>
     </div>
   </div>
 </template>
 <script>
 import mixin from '@/mixins/mixins';
 export default {
-  name: 'loginPage',
+  name: 'registerPage',
   mixins: [mixin],
   components: {
   },
@@ -27,17 +24,11 @@ export default {
   mounted () {
   },
   methods: {
-    // 去注册
-    register () {
-      this.createPage({name: 'registerPage'});
+    onInput (key) {
+      this.value = (this.value + key).slice(0, 6);
     },
-    // 登录
-    login () {
-      this.$notify({
-        message: '自定义颜色',
-        color: '#ffffff',
-        background: '#7a86d5'
-      });
+    onDelete () {
+      this.value = this.value.slice(0, this.value.length - 1);
     }
   }
 };
@@ -46,27 +37,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
   @import '../assets/css/common.less';
-  /*公共样式*/
   .inPage{
     background-color: white;
     height: 100%;
     padding: 10px;
-    .pg-register{
-      text-align: right;
-      padding: 20px 0;
-      color: @color_content;
-    }
   }
-  /*ui库样式覆盖*/
   .van-password-input{
     margin: 0;
-  }
-  .van-cell:last-child::after{
-    border-bottom: 1px solid #ebedf0;
-  }
-  .van-button--info{
-    background-color: @color_primary;
-    border-color: @color_primary;
   }
   @media screen and (max-width: 700px) {
   }

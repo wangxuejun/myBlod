@@ -1,7 +1,7 @@
 export default {
   data () {
     return {
-    }
+    };
   },
   created () {
   },
@@ -19,25 +19,25 @@ export default {
     },
     // 跳转页面
     createPage (page) {
-      let {name, params, query} = page
-      this.$router.push({name, params, query})
+      let {name, params, query} = page;
+      this.$router.push({name, params, query});
     },
     // 验证值是否有效
     isValid (value) {
-      if (value === '') { return false }
-      if (value === null) { return false }
-      if (value === undefined) { return false }
-      if (value === 0) { return false }
-      if (value === false) { return false }
-      return true
+      if (value === '') { return false; }
+      if (value === null) { return false; }
+      if (value === undefined) { return false; }
+      if (value === 0) { return false; }
+      if (value === false) { return false; }
+      return true;
     },
     // 验证值是否有效
     isValidNot0 (value) {
-      if (value === '') { return false }
-      if (value === null) { return false }
-      if (value === undefined) { return false }
-      if (value === false) { return false }
-      return true
+      if (value === '') { return false; }
+      if (value === null) { return false; }
+      if (value === undefined) { return false; }
+      if (value === false) { return false; }
+      return true;
     }
   },
   computed: {
@@ -48,4 +48,4 @@ export default {
   //   if (title) document.title = title
   //   next()
   // },
-}
+};

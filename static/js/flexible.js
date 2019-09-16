@@ -10,7 +10,6 @@
     maxWidth = maxWidth || 540
     width > maxWidth && (width = maxWidth)
     var rem = width * 100 / designWidth
-    console.log(rem);
     remStyle.innerHTML = 'html{font-size:' + rem + 'px;}'
   }
   if (docEl.firstElementChild) {

@@ -11,9 +11,9 @@ export default {
     kmAnalysi: () => import('@/components/base/kmAnalysi')
   },
   mounted () {
-    console.log('detail')
+    console.log('detail');
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

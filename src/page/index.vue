@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import mixin from '@/mixins/mixins'
+import mixin from '@/mixins/mixins';
 export default {
   name: 'App',
   mixins: [mixin],
@@ -37,21 +37,21 @@ export default {
       statue: false,
       transitionName: 'fade',
       exclude: ['detailPage']
-    }
+    };
   },
   watch: {
     '$route' (to, from) {
-      let wid = document.documentElement.offsetWidth || document.body.offsetWidth
+      let wid = document.documentElement.offsetWidth || document.body.offsetWidth;
       if (wid > 700) {
-        this.transitionName = 'fade'
-        return
+        this.transitionName = 'fade';
+        return;
       }
-      let fromI = from.meta.index
-      let toI = to.meta.index
+      let fromI = from.meta.index;
+      let toI = to.meta.index;
       if (fromI < toI) {
-        this.transitionName = 'slide-left'
+        this.transitionName = 'slide-left';
       } else {
-        this.transitionName = 'slide-right'
+        this.transitionName = 'slide-right';
       }
     }
   },
@@ -63,7 +63,7 @@ export default {
       this.active = !this.active;
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
