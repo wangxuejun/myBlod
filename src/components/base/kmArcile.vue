@@ -17,7 +17,7 @@
           height="100"
           fit="contain"
           lazy-load
-          src="../../../static/img/abridge.jpg"
+          :src="defaultImg"
         />
       </div>
     </div>
@@ -32,6 +32,11 @@ export default {
       type: Object,
       required: true
     }
+  },
+  data () {
+    return {
+      defaultImg: require('../../assets/img/abridge.jpg')
+    };
   },
   methods: {
     stop () {}

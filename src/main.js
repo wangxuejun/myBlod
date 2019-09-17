@@ -4,10 +4,8 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import 'iview/dist/styles/iview.css';
-// import hljs from 'highlight.js'
-// import 'highlight.js/styles/googlecode.css'
 // iview
-import { Switch, Message, Notice, Modal, Icon, Avatar, Dropdown, DropdownMenu, DropdownItem, BackTop } from 'iview';
+import { Switch, Message, Notice, Modal, Icon, Avatar, Dropdown, DropdownMenu, DropdownItem, BackTop, Checkbox } from 'iview';
 // vant
 import { Button, Skeleton, PullRefresh, Loading, Image, Lazyload, Field, Notify } from 'vant';
 import 'vant/lib/Skeleton/style';
@@ -25,7 +23,8 @@ let components1 = {
   'Dropdown': Dropdown,
   'DropdownMenu': DropdownMenu,
   'DropdownItem': DropdownItem,
-  'BackTop': BackTop
+  'BackTop': BackTop,
+  'Checkbox': Checkbox
 };
 let components2 = {
   '$Message': Message,

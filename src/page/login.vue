@@ -2,11 +2,12 @@
   <div class="inPage" ref="inPage">
     <div class="header">
       <van-field v-model="name" placeholder="请输入用户名" clearable left-icon="manager" size="large"/>
-      <van-field v-model="password1" placeholder="请输入密码" clearable left-icon="lock" size="large" type="password"/>
+      <van-field v-model="password" placeholder="请输入密码" clearable left-icon="lock" size="large" type="password"/>
       <div class="pg-register">
+        <span><Checkbox v-model="rember" size="large">记住登录状态</Checkbox></span>
         <span @click="register">注册</span>
       </div>
-      <van-button type="info" long size="large" @click="login">登录</van-button>
+      <van-button class="shadowAround"  type="info" long size="large" @click="login">登录</van-button>
     </div>
   </div>
 </template>
@@ -20,8 +21,8 @@ export default {
   data () {
     return {
       name: '',
-      password1: '',
-      password2: ''
+      password: '',
+      rember: false
     };
   },
   mounted () {
@@ -29,14 +30,16 @@ export default {
   methods: {
     // 去注册
     register () {
+      this.$notify.clear();
       this.createPage({name: 'registerPage'});
     },
     // 登录
     login () {
       this.$notify({
-        message: '自定义颜色',
+        message: '用户名错误',
         color: '#ffffff',
-        background: '#7a86d5'
+        background: '#7a86d5',
+        duration: 1000
       });
     }
   }
@@ -50,9 +53,9 @@ export default {
   .inPage{
     background-color: white;
     height: 100%;
-    padding: 10px;
+    padding: 15px;
     .pg-register{
-      text-align: right;
+      .flex;
       padding: 20px 0;
       color: @color_content;
     }
@@ -60,9 +63,6 @@ export default {
   /*ui库样式覆盖*/
   .van-password-input{
     margin: 0;
-  }
-  .van-cell:last-child::after{
-    border-bottom: 1px solid #ebedf0;
   }
   .van-button--info{
     background-color: @color_primary;

@@ -2,8 +2,12 @@
   <div class="inPage" ref="inPage">
     <div class="header">
       <van-field v-model="name" placeholder="请输入用户名" clearable left-icon="manager" size="large"/>
-      <van-field v-model="password1" placeholder="请输入密码" clearable left-icon="lock" size="large" type="password"/>
-      <van-field disabled style="opacity: 0"/>
+      <van-field v-model="password" placeholder="请输入密码" clearable left-icon="lock" size="large" type="password"/>
+      <van-field v-model="password2" placeholder="重复密码" clearable left-icon="lock" size="large" type="password2"/>
+      <div class="pg-register">
+      </div>
+      <br>
+      <van-button class="shadowAround" type="info" long size="large" @click="register">注册</van-button>
     </div>
   </div>
 </template>
@@ -17,19 +21,14 @@ export default {
   data () {
     return {
       name: '',
-      password1: '',
+      password: '',
       password2: ''
     };
   },
   mounted () {
   },
   methods: {
-    onInput (key) {
-      this.value = (this.value + key).slice(0, 6);
-    },
-    onDelete () {
-      this.value = this.value.slice(0, this.value.length - 1);
-    }
+    register () {}
   }
 };
 </script>
@@ -40,10 +39,15 @@ export default {
   .inPage{
     background-color: white;
     height: 100%;
-    padding: 10px;
+    padding: 15px;
   }
+  /*ui库样式覆盖*/
   .van-password-input{
     margin: 0;
+  }
+  .van-button--info{
+    background-color: @color_primary;
+    border-color: @color_primary;
   }
   @media screen and (max-width: 700px) {
   }

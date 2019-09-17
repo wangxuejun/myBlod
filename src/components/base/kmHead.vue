@@ -46,9 +46,11 @@ export default {
         this.back = false;
       }
     },
+    // 侧边栏隐藏与否
     toggle () {
       this.$emit('toggle');
     },
+    // 选择
     select (name) {
       this.createPage({name});
     }
@@ -79,11 +81,11 @@ export default {
   @media screen and (max-width: 700px) {
     .kmhead-mobile_reodrer{
       margin-left: -10px;
-      color: @font-color_content;
+      color: @color_content;
     }
     .kmhead-mobile_back{
       margin-left: -10px;
-      color: @font-color_content;
+      color: @color_content;
     }
     .kmhead-pc_brand{
       display: none;
