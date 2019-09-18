@@ -13,6 +13,7 @@
 </template>
 <script>
 import mixin from '@/mixins/mixins';
+import http from '../utils/axios';
 export default {
   name: 'loginPage',
   mixins: [mixin],
@@ -40,6 +41,17 @@ export default {
         color: '#ffffff',
         background: '#7a86d5',
         duration: 1000
+      });
+      function config (url, params, method = 'GET') {
+        return {
+          method: method,
+          url: url,
+          data: method === 'POST' || method === 'PUT' ? JSON.stringify(params) : null,
+          params: method === 'GET' || method === 'DELETE' ? params : null
+        };
+      }
+      http(config('/api/user', {}, 'GET')).then(res => {
+        console.log(res);
       });
     }
   }
