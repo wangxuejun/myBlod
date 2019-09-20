@@ -1,3 +1,4 @@
+import { $loading } from '@/utils/loading';
 export default {
   data () {
     return {
@@ -6,13 +7,11 @@ export default {
   created () {
   },
   methods: {
+    // 阻止空事件
     stop () {},
-    // 处理点击事件错位
-    resetClick () {
-      // setTimeout(function () {
-      //   var scrollHeight = document.documentElement.scrollTop || document.body.scrollTop || 0
-      //   window.scrollTo(0, Math.max(scrollHeight - 1, 0))
-      // }, 100)
+    // 加载框
+    loading () {
+      return $loading();
     },
     returnBack () {
       this.$router.back();
@@ -38,6 +37,13 @@ export default {
       if (value === undefined) { return false; }
       if (value === false) { return false; }
       return true;
+    },
+    // 处理点击事件错位
+    resetClick () {
+      setTimeout(function () {
+        var scrollHeight = document.documentElement.scrollTop || document.body.scrollTop || 0;
+        window.scrollTo(0, Math.max(scrollHeight - 1, 0));
+      }, 100);
     }
   },
   computed: {

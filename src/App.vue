@@ -34,6 +34,10 @@ export default {
     // }
   },
   mounted () {
+    this.$Message.config({
+      duration: 2,
+      top: 60
+    });
   },
   methods: {
   }
@@ -45,7 +49,6 @@ export default {
 *{
   padding: 0;
   margin: 0;
-  user-select: none;
 }
 html, body{
   height: 100%;

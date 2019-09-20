@@ -9,7 +9,7 @@
       </div>
       <div class="content">
         <transition :name="transitionName">
-          <keep-alive exclude='detailPage'>
+          <keep-alive exclude='detailPage,loginPage,registerPage'>
             <router-view></router-view>
           </keep-alive>
         </transition>

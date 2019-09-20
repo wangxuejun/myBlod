@@ -24,7 +24,21 @@ export default {
   mixins: [mixin],
   data () {
     return {
-      back: false
+      back: false,
+      list: [
+        {
+          name: 'loginPage',
+          value: '登陆'
+        },
+        {
+          name: 'registerPage',
+          value: '注册'
+        },
+        {
+          name: 'setPage',
+          value: '设置'
+        }
+      ]
     };
   },
   watch: {

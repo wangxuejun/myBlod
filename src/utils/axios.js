@@ -1,20 +1,10 @@
 import axios from 'axios';
-// import {showFullScreenLoading, tryHideFullScreenLoading} from './loading'
-// import router from '../router'
-// import { Toast } from 'vant'
-// Toast.allowMultiple()
-// function toastBox (msg = '请求失败') {
-//   let toast = Toast.fail({
-//     message: msg,
-//     duration: 0
-//   })
-//   setTimeout(() => {
-//     toast.clear()
-//   }, 1500)
-// }
+import { $showLoading, $closeLoading } from './loading';
+import { Message } from 'iview';
 let http = axios.create({
-  // baseURL: '/api/',
-  withCredentials: true,
+  baseURL: '/api',
+  withCredentials: false, // 表示跨域请求时是否需要使用凭证
+  timeout: 15000,
   headers: {
     'Content-Type': 'application/json'
   },
@@ -22,27 +12,25 @@ let http = axios.create({
     return data;
   }]
 });
-http.defaults.timeout = 15000;
 http.interceptors.request.use(function (config) {
-  let openId = sessionStorage.getItem('openid');
-  if (openId) config.headers.openId = openId;
+  $showLoading();
+  let token = localStorage.getItem('token');
+  if (token) config.headers.token = token;
   return config;
 }, function (error) {
+  $closeLoading();
   return Promise.reject(error);
 });
 http.interceptors.response.use(function (response) {
-  // if (response.config.showLoading) {
-  // tryHideFullScreenLoading();
-  // }
-  let code = response.data.errcode;
+  $closeLoading();
+  let code = response.data.code;
   if (code === 0) {
-    return response;
+    return response.data;
   } else {
-    return response;
+    Message.error(response.data.msg);
+    return response.data;
   }
 }, function () {
-  // toastBox()
-  // tryHideFullScreenLoading()
-  // router.push({path: '/error'})
+  $closeLoading();
 });
 export default http;
