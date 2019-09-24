@@ -12,6 +12,7 @@ export default {
   },
   mounted () {
     console.log('detail');
+    this.$mutations.setTitle('文章');
   }
 };
 </script>

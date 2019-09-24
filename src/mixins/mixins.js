@@ -1,4 +1,5 @@
 import { $loading } from '@/utils/loading';
+import {store} from '@/store';
 export default {
   data () {
     return {
@@ -47,6 +48,12 @@ export default {
     }
   },
   computed: {
+    userInfo () {
+      return store.userInfo;
+    },
+    title () {
+      return store.title;
+    }
   }
   // beforeRouteEnter (to, from, next) {
   //   let {title} = to.meta
