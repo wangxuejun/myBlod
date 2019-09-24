@@ -1,4 +1,10 @@
 import http from './axios';
+var baseUrl;
+if (process.env.NODE_ENV === 'development') {
+  baseUrl = '/api';
+} else if (process.env.NODE_ENV === 'production') {
+  baseUrl = 'http://www.rp66.cn:3308';
+}
 function config (url, params, method = 'GET') {
   return {
     method: method,
@@ -9,13 +15,13 @@ function config (url, params, method = 'GET') {
 }
 // 注册
 export function apiRegister (params, callback) {
-  http(config('/user/register', params, 'POST')).then(res => {
+  http(config(baseUrl + '/user/register', params, 'POST')).then(res => {
     if (typeof callback === 'function') callback(res);
   });
 }
 // 登录
 export function apiLogin (params, callback) {
-  http(config('/user/login', params, 'POST')).then(res => {
+  http(config(baseUrl + '/user/login', params, 'POST')).then(res => {
     if (typeof callback === 'function') callback(res);
   });
 }

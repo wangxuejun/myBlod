@@ -2,7 +2,7 @@ import axios from 'axios';
 import { $showLoading, $closeLoading } from './loading';
 import { Message } from 'iview';
 let http = axios.create({
-  baseURL: '/api',
+  baseURL: '',
   withCredentials: false, // 表示跨域请求时是否需要使用凭证
   timeout: 15000,
   headers: {
@@ -15,7 +15,7 @@ let http = axios.create({
 http.interceptors.request.use(function (config) {
   $showLoading();
   let token = localStorage.getItem('token');
-  if (token) config.headers.token = token;
+  if (token) config.headers['Authorization'] = token;
   return config;
 }, function (error) {
   $closeLoading();
