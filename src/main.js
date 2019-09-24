@@ -8,7 +8,7 @@ import 'iview/dist/styles/iview.css';
 // iview
 import { Switch, Message, Notice, Modal, Icon, Avatar, Dropdown, DropdownMenu, DropdownItem, BackTop, Checkbox } from 'iview';
 // vant
-import { Button, Skeleton, PullRefresh, Loading, Image, Lazyload, Field, Notify, Toast } from 'vant';
+import { Button, Skeleton, PullRefresh, Loading, Image, Lazyload, Field, Notify, Toast, Dialog } from 'vant';
 import 'vant/lib/Skeleton/style';
 import 'vant/lib/pull-refresh/style';
 import 'vant/lib/loading/style';
@@ -17,6 +17,7 @@ import 'vant/lib/lazyload/style';
 import 'vant/lib/field/style';
 import 'vant/lib/notify/style';
 import 'vant/lib/toast/style';
+import 'vant/lib/dialog/style';
 let components1 = {
   'i-button': Button,
   'i-switch': Switch,
@@ -49,6 +50,7 @@ Vue.use(Lazyload);
 Vue.use(Field);
 Vue.use(Notify);
 Vue.use(Toast);
+Vue.use(Dialog);
 Vue.prototype.$mutations = mutations;
 /* eslint-disable no-new */
 new Vue({

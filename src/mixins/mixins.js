@@ -14,6 +14,37 @@ export default {
     loading () {
       return $loading();
     },
+    confirm (config) {
+      if (store.isMin) {
+        this.$dialog.confirm({
+          title: config.title,
+          msg: config.msg
+        }).then(() => {
+          if (config.success) {
+            config.success.apply(this);
+          };
+        }).catch(() => {
+          if (config.fail) {
+            config.fail.apply(this);
+          };
+        });
+      } else {
+        this.$Modal.confirm({
+          title: config.title,
+          content: config.msg,
+          onOk: () => {
+            if (config.success) {
+              config.success.apply(this);
+            };
+          },
+          onCancel: () => {
+            if (config.fail) {
+              config.fail.apply(this);
+            };
+          }
+        });
+      };
+    },
     returnBack () {
       this.$router.back();
     },

@@ -21,6 +21,15 @@ const Routers = new Router({
           }
         },
         {
+          name: 'personalPage',
+          path: 'personal',
+          component: resolve => require(['@/page/personal'], resolve),
+          meta: {
+            index: 2,
+            desc: '个人中心'
+          }
+        },
+        {
           name: 'detailPage',
           path: 'detail',
           component: resolve => require(['@/page/base/detail'], resolve),

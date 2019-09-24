@@ -7,7 +7,6 @@
         <span><Checkbox v-model="rember" size="large">一周内免登陆</Checkbox></span>
         <span @click="register">注册</span>
       </div>
-      {{userInfo.nickname}}
       <van-button class="shadowAround"  type="info" long size="large" @click="login">登录</van-button>
     </div>
   </div>
@@ -52,6 +51,7 @@ export default {
           delete info.token;
           localStorage.setItem('token', token);
           localStorage.setItem('user', JSON.stringify(info));
+          this.$mutations.setUser(info);
           this.$Message.success('欢迎登陆！');
           setTimeout(() => {
             this.createPage({name: 'homePage'});

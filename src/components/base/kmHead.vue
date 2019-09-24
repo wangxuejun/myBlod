@@ -8,9 +8,12 @@
       <Dropdown trigger="click" @on-click="select" v-if="!back">
         <Avatar icon="ios-person"/>
         <DropdownMenu slot="list">
-            <DropdownItem class="kmhead-mobile_dropditem" name="loginPage">登录</DropdownItem>
-            <DropdownItem class="kmhead-mobile_dropditem" name="registerPage">注册</DropdownItem>
-            <DropdownItem class="kmhead-mobile_dropditem" name="setPage">设置</DropdownItem>
+          <DropdownItem class="kmhead-mobile_dropditem" v-for="(item, index) in navList" :key="index" :name="item.name">
+            <div class="kmhead-mobile_itemBox flex">
+              <Icon :type="item.icon" />
+              <span>{{item.value}}</span>
+            </div>
+          </DropdownItem>
         </DropdownMenu>
       </Dropdown>
     </span>
@@ -25,21 +28,7 @@ export default {
   mixins: [mixin],
   data () {
     return {
-      back: false,
-      list: [
-        {
-          name: 'loginPage',
-          value: '登陆'
-        },
-        {
-          name: 'registerPage',
-          value: '注册'
-        },
-        {
-          name: 'setPage',
-          value: '设置'
-        }
-      ]
+      back: false
     };
   },
   watch: {
@@ -53,33 +42,39 @@ export default {
     this.judge(name);
   },
   computed: {
+    isMin () {
+      return store.isMin;
+    },
     navList () {
-      if (store.userInfo) {
-        console.log(1);
+      if (store.userInfo.user) {
         return [
           {
             name: 'back',
-            value: '退出'
+            value: '退出',
+            icon: 'md-log-out'
           },
           {
-            name: 'setPage',
-            value: '设置'
+            name: 'personalPage',
+            value: '我的',
+            icon: 'md-person'
           }
         ];
       } else {
-        console.log(2);
         return [
           {
             name: 'loginPage',
-            value: '登陆'
+            value: '登陆',
+            icon: 'md-log-in'
           },
           {
             name: 'registerPage',
-            value: '注册'
+            value: '注册',
+            icon: 'ios-create'
           },
           {
-            name: 'setPage',
-            value: '设置'
+            name: 'personalPage',
+            value: '我的',
+            icon: 'md-person'
           }
         ];
       }
@@ -88,7 +83,7 @@ export default {
   methods: {
     // 判断当前页面
     judge (name) {
-      if (['loginPage', 'detailPage', 'registerPage'].indexOf(name) >= 0) {
+      if (['loginPage', 'detailPage', 'registerPage', 'personalPage'].indexOf(name) >= 0) {
         this.back = true;
       } else {
         this.back = false;
@@ -100,6 +95,30 @@ export default {
     },
     // 选择
     select (name) {
+      if (name === 'back') {
+        // this.$Modal.confirm({
+        //   title: 'hello'
+        // });
+        this.confirm({
+          title: '确定退出？',
+          success () {
+            localStorage.clear();
+            this.$Message.success('退出成功！');
+            setTimeout(() => {
+              this.$mutations.setUser({});
+            }, 300);
+          }
+        });
+        // this.$dialog.confirm({
+        //   title: '确定退出？'
+        // }).then(() => {
+        //   localStorage.clear();
+        //   setTimeout(() => {
+        //     this.$mutations.setUser({});
+        //   }, 300);
+        // });
+        return;
+      }
       this.createPage({name});
     }
   }
@@ -125,6 +144,12 @@ export default {
     color: white;
     background-color: #19be6b;
     display: inline-block;
+  }
+  .kmhead-mobile_itemBox{
+    justify-content: flex-start;
+    span{
+      margin-left: 10px;
+    }
   }
   @media screen and (max-width: 700px) {
     .kmhead-mobile_reodrer{
