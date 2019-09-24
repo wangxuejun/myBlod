@@ -2,7 +2,7 @@
   <div class="component kmhead flex shadowBottom">
     <Icon class="kmhead-mobile_back" type="ios-arrow-back" size="40" v-if="back" @click="returnBack"/>
     <Icon class="kmhead-mobile_reodrer" type="md-reorder" size="40" @click="toggle" v-else/>
-    <span class="kmhead-mobile_title">标题</span>
+    <span class="kmhead-mobile_title">{{title}}</span>
     <span class="kmhead-pc_brand">JS</span>
     <span class="kmHead-mobile_head">
       <Dropdown trigger="click" @on-click="select" v-if="!back">
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import {store} from '@/store';
 import mixin from '@/mixins/mixins';
 export default {
   name: 'HeadCom',
@@ -50,6 +51,39 @@ export default {
   mounted () {
     let name = this.$route.name;
     this.judge(name);
+  },
+  computed: {
+    navList () {
+      if (store.userInfo) {
+        console.log(1);
+        return [
+          {
+            name: 'back',
+            value: '退出'
+          },
+          {
+            name: 'setPage',
+            value: '设置'
+          }
+        ];
+      } else {
+        console.log(2);
+        return [
+          {
+            name: 'loginPage',
+            value: '登陆'
+          },
+          {
+            name: 'registerPage',
+            value: '注册'
+          },
+          {
+            name: 'setPage',
+            value: '设置'
+          }
+        ];
+      }
+    }
   },
   methods: {
     // 判断当前页面

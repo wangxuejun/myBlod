@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+import {mutations} from '@/store';
 import 'iview/dist/styles/iview.css';
 // iview
 import { Switch, Message, Notice, Modal, Icon, Avatar, Dropdown, DropdownMenu, DropdownItem, BackTop, Checkbox } from 'iview';
@@ -48,6 +49,7 @@ Vue.use(Lazyload);
 Vue.use(Field);
 Vue.use(Notify);
 Vue.use(Toast);
+Vue.prototype.$mutations = mutations;
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

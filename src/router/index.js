@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-
+import {mutations} from '@/store';
 Vue.use(Router);
 
-export default new Router({
+const Routers = new Router({
   routes: [
     {
       path: '/',
@@ -16,7 +16,8 @@ export default new Router({
           path: 'home',
           component: resolve => require(['@/page/base/home'], resolve),
           meta: {
-            index: 1
+            index: 1,
+            desc: '首页'
           }
         },
         {
@@ -32,7 +33,8 @@ export default new Router({
           name: 'loginPage',
           component: resolve => require(['@/page/login'], resolve),
           meta: {
-            index: 100
+            index: 100,
+            desc: '登录'
           }
         },
         {
@@ -40,7 +42,8 @@ export default new Router({
           name: 'registerPage',
           component: resolve => require(['@/page/register'], resolve),
           meta: {
-            index: 101
+            index: 101,
+            desc: '注册'
           }
         }
       ]
@@ -54,3 +57,8 @@ export default new Router({
     }
   }
 });
+Routers.beforeEach((to, from, next) => {
+  mutations.setTitle(to.meta.desc);
+  next();
+});
+export default Routers;
